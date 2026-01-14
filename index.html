@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tech Portfolio | N. Sivaranjini</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    height: 100vh;
+    background: linear-gradient(135deg, #071A33 0%, #0A1F3F 50%, #0c2348 100%);
+    color: #EAF6FF;
+    overflow: hidden;
+    position: relative;
+}
+
+/* BCA Student Professional Background Image */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2070&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.1;
+    z-index: -1;
+}
+
+/* Abstract background elements */
+.bg-particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    background-color: rgba(79, 195, 247, 0.15);
+    border-radius: 50%;
+}
+
+.line {
+    position: absolute;
+    background: linear-gradient(90deg, transparent, rgba(79, 195, 247, 0.3), transparent);
+    height: 1px;
+}
+
+.wave {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(transparent, rgba(79, 195, 247, 0.1));
+    border-radius: 50% 50% 0 0;
+}
+
+/* Portfolio title */
+.portfolio-title {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #64B5F6;
+    text-shadow: 0 0 10px rgba(100, 181, 246, 0.3);
+    z-index: 10;
+}
+
+/* Main container */
+.container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    animation: slideIn 1.3s ease forwards;
+    transform: translateX(100%);
+    z-index: 2;
+}
+
+@keyframes slideIn {
+    to { transform: translateX(0); }
+}
+
+/* Menu - Now horizontal at top right */
+.menu {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 15px;
+    z-index: 10;
+}
+
+.menu button {
+    background: rgba(10, 31, 63, 0.7);
+    border: 1px solid rgba(79, 195, 247, 0.3);
+    color: #EAF6FF;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    backdrop-filter: blur(5px);
+    font-size: 14px;
+}
+
+.menu button:hover {
+    background: rgba(79, 195, 247, 0.2);
+    border-color: #4FC3F7;
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px rgba(79, 195, 247, 0.3);
+}
+
+.menu button.active-btn {
+    background: rgba(79, 195, 247, 0.25);
+    border-color: #4FC3F7;
+    box-shadow: 0 0 15px rgba(79, 195, 247, 0.4);
+}
+
+/* Sections */
+.section {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 75%;
+    max-width: 900px;
+    text-align: center;
+    animation: popUp 1s ease forwards;
+    background: rgba(7, 26, 51, 0.7);
+    border-radius: 20px;
+    padding: 40px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(79, 195, 247, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.section.active {
+    display: block;
+}
+
+@keyframes popUp {
+    from {
+        transform: translate(-50%, 20%);
+        opacity: 0;
+    }
+    to {
+        transform: translate(-50%, -50%);
+        opacity: 1;
+    }
+}
+
+/* Home animation */
+.home-text {
+    animation: popFromBottom 1.2s ease forwards;
+}
+
+@keyframes popFromBottom {
+    from {
+        transform: translateY(120px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.top-role {
+    font-size: 20px;
+    letter-spacing: 2px;
+    color: #4FC3F7;
+    margin-bottom: 10px;
+}
+
+.name {
+    font-size: 48px;
+    font-weight: bold;
+    margin: 10px 0;
+    background: linear-gradient(90deg, #4FC3F7, #64B5F6, #90CAF9);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 20px rgba(79, 195, 247, 0.3);
+}
+
+.bottom-role {
+    font-size: 22px;
+    margin-top: 8px;
+    color: #EAF6FF;
+    font-weight: 500;
+}
+
+/* Headings */
+.section h2 {
+    font-size: 32px;
+    margin-bottom: 30px;
+    color: #64B5F6;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+.section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #4FC3F7, transparent);
+}
+
+/* Text */
+.section p {
+    font-size: 18px;
+    line-height: 1.7;
+    color: #EAF6FF;
+    text-align: left;
+}
+
+.section b {
+    color: #64B5F6;
+    font-weight: 600;
+}
+
+/* Skills with Icons */
+.skills {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.skill {
+    border: 1px solid rgba(79, 195, 247, 0.3);
+    padding: 20px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    background: rgba(10, 31, 63, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.skill:hover {
+    transform: translateY(-5px);
+    border-color: #4FC3F7;
+    box-shadow: 0 5px 15px rgba(79, 195, 247, 0.2);
+    background: rgba(79, 195, 247, 0.1);
+}
+
+.skill-icon {
+    font-size: 32px;
+    margin-bottom: 5px;
+}
+
+.skill-name {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+/* Contact info styling */
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 25px;
+    background: rgba(10, 31, 63, 0.5);
+    border-radius: 12px;
+    border: 1px solid rgba(79, 195, 247, 0.2);
+    transition: all 0.3s ease;
+    min-width: 300px;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+}
+
+.contact-item:hover {
+    transform: translateY(-3px);
+    border-color: #4FC3F7;
+    box-shadow: 0 5px 15px rgba(79, 195, 247, 0.2);
+}
+
+.contact-icon {
+    font-size: 24px;
+    color: #4FC3F7;
+}
+
+.email-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+}
+
+.email-link:hover {
+    color: inherit;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .menu {
+        top: 15px;
+        right: 50%;
+        transform: translateX(50%);
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+    }
+    
+    .menu button {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+    
+    .portfolio-title {
+        font-size: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 70px;
+    }
+    
+    .section {
+        width: 90%;
+        padding: 25px;
+        top: 55%;
+    }
+    
+    .name {
+        font-size: 36px;
+    }
+    
+    .skills {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .contact-item {
+        min-width: 250px;
+    }
+}
+
+/* For very small screens */
+@media (max-width: 480px) {
+    .skills {
+        grid-template-columns: 1fr;
+    }
+    
+    .menu {
+        gap: 5px;
+    }
+    
+    .menu button {
+        padding: 5px 10px;
+        font-size: 11px;
+    }
+}
+</style>
+</head>
+
+<body>
+<!-- Abstract background elements -->
+<div class="bg-particles" id="bgParticles"></div>
+
+<div class="portfolio-title">Tech Portfolio</div>
+
+<div class="container">
+    <!-- MENU - Now horizontal at top right -->
+    <div class="menu">
+        <button onclick="showSection('home')" class="active-btn">Home</button>
+        <button onclick="showSection('about')">About</button>
+        <button onclick="showSection('skills')">Skills</button>
+        <button onclick="showSection('education')">Education</button>
+        <button onclick="showSection('experience')">Experience</button>
+        <button onclick="showSection('project')">Project</button>
+        <button onclick="showSection('contact')">Contact</button>
+    </div>
+
+    <!-- HOME -->
+    <div id="home" class="section active">
+        <div class="home-text">
+            <div class="top-role">Software Development</div>
+            <div class="name">N. Sivaranjini</div>
+            <div class="bottom-role">Software Developer</div>
+            <p style="text-align: center; margin-top: 30px; font-size: 18px; color: #B3E5FC;">
+                Passionate about creating innovative digital solutions with modern technologies
+            </p>
+        </div>
+    </div>
+
+    <!-- ABOUT -->
+    <div id="about" class="section">
+        <h2>About Me</h2>
+        <p>
+            Hello! I am <b>N. Sivaranjini</b>. I am passionate about website development and
+            app development with a strong interest in creating responsive, user-friendly,
+            and visually appealing web interfaces.
+            <br><br>
+            I enjoy working with <b>HTML, CSS, JavaScript, and UI/UX design</b> to build
+            modern websites and continuously improve my skills by exploring new technologies.
+            I am eager to begin my professional journey and gain valuable work experience.
+            <br><br>
+            My goal is to contribute to innovative projects that leverage technology to solve
+            real-world problems while growing as a developer in a collaborative environment.
+        </p>
+    </div>
+
+    <!-- SKILLS with Icons -->
+    <div id="skills" class="section">
+        <h2>Skills</h2>
+        <div class="skills">
+            <div class="skill">
+                <div class="skill-icon">🌐</div>
+                <div class="skill-name">HTML</div>
+            </div>
+            <div class="skill">
+                <div class="skill-icon">🎨</div>
+                <div class="skill-name">CSS</div>
+            </div>
+            <div class="skill">
+                <div class="skill-icon">⚡</div>
+                <div class="skill-name">JavaScript</div>
+            </div>
+            <div class="skill">
+                <div class="skill-icon">📱</div>
+                <div class="skill-name">UI/UX Design</div>
+            </div>
+            <div class="skill">
+                <div class="skill-icon">📱</div>
+                <div class="skill-name">Responsive Design</div>
+            </div>
+            <div class="skill">
+                <div class="skill-icon">💡</div>
+                <div class="skill-name">Problem Solving</div>
+            </div>
+            <div class="skill">
+                <div class="skill-icon">🔄</div>
+                <div class="skill-name">Adaptability</div>
+            </div>
+            <div class="skill">
+                <div class="skill-icon">👥</div>
+                <div class="skill-name">Team Collaboration</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- EDUCATION -->
+    <div id="education" class="section">
+        <h2>Education</h2>
+        <p>
+            <b>School:</b> Girls Higher Secondary School – Ulundurpet<br><br>
+            <b>BCA:</b> Theivanai Ammal College For Women (Computer Applications)<br><br>
+            <b>Relevant Coursework:</b> Web Technologies, Database Management, 
+            Software Engineering, Data Structures, Object-Oriented Programming
+        </p>
+    </div>
+
+    <!-- EXPERIENCE -->
+    <div id="experience" class="section">
+        <h2>Experience</h2>
+        <p>
+            I am a fresher who has completed internships to apply academic knowledge
+            in a practical environment.
+            <br><br>
+            <b>Cherry Technologies:</b> Flutter Development Intern<br>
+            <i>Developed mobile applications using Flutter framework</i>
+            <br><br>
+            <b>Nexgen Technologies:</b> Full Stack Development Intern<br>
+            <i>Worked on both frontend and backend development projects</i>
+            <br><br>
+            <b>Blastout Solution:</b> UI/UX Design Intern<br>
+            <i>Created wireframes and prototypes using Figma</i>
+        </p>
+    </div>
+
+    <!-- PROJECT -->
+    <div id="project" class="section">
+        <h2>Project</h2>
+        <p>
+            <b>Title:</b> Crop Diseases Detection & Fertilizer Recommendation
+            <br><br>
+            <b>Motive:</b> Build a model to detect plant diseases using images and
+            recommend suitable fertilizers for better crop yield.
+            <br><br>
+            <b>Technologies Used:</b> Python, TensorFlow, OpenCV, Flask, HTML/CSS
+            <br><br>
+            <b>Key Features:</b>
+            <ul style="text-align: left; margin-left: 20px; margin-top: 10px;">
+                <li>Image-based disease detection using CNN</li>
+                <li>Personalized fertilizer recommendations</li>
+                <li>Responsive web interface for farmers</li>
+                <li>Database for tracking crop health history</li>
+            </ul>
+        </p>
+    </div>
+
+    <!-- CONTACT with Email Link -->
+    <div id="contact" class="section">
+        <h2>Contact</h2>
+        <div class="contact-info">
+            <div class="contact-item">
+                <div class="contact-icon">📱</div>
+                <div>
+                    <div style="font-weight: bold; color: #64B5F6;">Phone</div>
+                    <div>+91 78453 34871</div>
+                </div>
+            </div>
+            <a href="mailto:ranjini292006@gmail.com" class="contact-item email-link">
+                <div class="contact-icon">✉️</div>
+                <div>
+                    <div style="font-weight: bold; color: #64B5F6;">Email</div>
+                    <div>ranjini292006@gmail.com</div>
+                </div>
+            </a>
+            <div class="contact-item">
+                <div class="contact-icon">📍</div>
+                <div>
+                    <div style="font-weight: bold; color: #64B5F6;">Location</div>
+                    <div>Tamil Nadu, India</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function showSection(id) {
+    // Remove active class from all sections
+    document.querySelectorAll('.section').forEach(sec => {
+        sec.classList.remove('active');
+    });
+    
+    // Remove active class from all buttons
+    document.querySelectorAll('.menu button').forEach(btn => {
+        btn.classList.remove('active-btn');
+    });
+    
+    // Add active class to selected section
+    document.getElementById(id).classList.add('active');
+    
+    // Add active class to clicked button
+    event.target.classList.add('active-btn');
+}
+
+// Create abstract background with particles and lines
+function createBackground() {
+    const container = document.getElementById('bgParticles');
+    
+    // Create particles
+    for (let i = 0; i < 40; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        
+        // Random properties
+        const size = Math.random() * 6 + 2;
+        const x = Math.random() * 100;
+        const y = Math.random() * 100;
+        const opacity = Math.random() * 0.2 + 0.05;
+        
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.left = `${x}%`;
+        particle.style.top = `${y}%`;
+        particle.style.opacity = opacity;
+        particle.style.animation = `pulse ${Math.random() * 5 + 3}s infinite alternate`;
+        
+        container.appendChild(particle);
+    }
+    
+    // Create connecting lines
+    for (let i = 0; i < 20; i++) {
+        const line = document.createElement('div');
+        line.classList.add('line');
+        
+        const x1 = Math.random() * 100;
+        const y1 = Math.random() * 100;
+        const length = Math.random() * 10 + 5;
+        const angle = Math.random() * 360;
+        
+        line.style.left = `${x1}%`;
+        line.style.top = `${y1}%`;
+        line.style.width = `${length}%`;
+        line.style.transform = `rotate(${angle}deg)`;
+        line.style.opacity = Math.random() * 0.2 + 0.05;
+        
+        container.appendChild(line);
+    }
+    
+    // Create wave at bottom
+    const wave = document.createElement('div');
+    wave.classList.add('wave');
+    container.appendChild(wave);
+    
+    // Add pulse animation to CSS
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes pulse {
+            from { transform: scale(1); }
+            to { transform: scale(1.3); }
+        }
+    `;
+    document.head.appendChild(style);
+}
+
+// Initialize background when page loads
+window.addEventListener('DOMContentLoaded', createBackground);
+</script>
+
+</body>
+</html>
